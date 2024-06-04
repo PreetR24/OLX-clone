@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://d6xcmfyh68wv8.cloudfront.net/learn-content/uploads/2020/11/ecommerce-website-builder-india.png'); /* Add your background image URL here */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .detail-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 30px;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 220px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #0c1b57;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #21963f;
+        }
+
+        .logout-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logout-container">
+        <form action="/logout" method="post">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+    <div class="detail-box">
+        <h1>Welcome to our products page!</h1>
+        <h2>Enter Product Details</h2>
+        <form action="/seller_dashboard/<%= seller_id %>" method="POST">
+            <input type="hidden" name="seller_id" value="<%= seller_id %>">
+            <label for="name">Enter Product Name: </label>
+            <br><br>
+            <input type="text" placeholder="Product Name" name="name" required>
+            <br><br>
+            <label for="Description">Enter Product Description : </label>
+            <br><br>
+            <input type="text" placeholder="Description" name="description" required>
+            <br><br>
+            <label for="price">Enter Price: </label>
+            <br><br>
+            <input type="number" placeholder="Price" name="price" required>
+            <br><br>
+            <button type="submit">Submit</button>
+        </form>
+
+        <form action="/seller_allproducts/<%= seller_id %>" method="get">
+            <button>View All Products</button>
+        </form>
+    </div>
+</body>
+
+</html>

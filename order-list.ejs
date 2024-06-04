@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+            background-image: url('https://d6xcmfyh68wv8.cloudfront.net/learn-content/uploads/2020/11/ecommerce-website-builder-india.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        form button {
+            background-color: #59d9cf;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #45b6b0;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 150px;
+            color: #07110e
+        }
+
+        table {
+            width: 30%;
+            margin: 150px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        th {
+            background-color: #59d9cf;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        button {
+            display: block;
+            position:absolute;
+            margin: 0 auto;
+            padding: 10px 20px;
+            background-color: #59d9cf;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45b6b0;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/logout" method="post">
+        <button type="submit">Logout</button>
+    </form>
+    <h1>Buyer Emails for Product ID: <%= product_id %>
+    </h1>
+
+    <% buyeremail.forEach(email=> { %>
+        <table width="30%">
+            <th>Emails</th>
+            <tr>
+                <td>
+                    <%= email %>
+                </td>
+            </tr>
+        </table>
+        <% }); %>
+
+</body>
+
+</html>

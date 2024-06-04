@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer</title>
+    <style>
+        body {
+            background-image: url('https://cdn.vox-cdn.com/thumbor/3SMk2n_YKC5WO8eHJhnSR7N7cuY=/0x0:1320x743/1400x1400/filters:focal(660x372:661x373)/cdn.vox-cdn.com/uploads/chorus_asset/file/23761284/dashcart.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            opacity: 0.9;
+            /* Set opacity to fade the background image */
+            position: relative;
+            /* Make the position relative for absolute positioning */
+            color: #000000;
+            /* Set default text color */
+        }
+        h1{
+            color: white;
+        }
+
+        form {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .logout-container button{
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            height: 30px;
+        }
+
+        table {
+            margin: auto;
+            background-color: rgba(244, 241, 241, 0.9);
+            /* Set background color with opacity to make it semi-transparent */
+            border-collapse: collapse;
+            /* Collapse table borders */
+        }
+
+        th,
+        td {
+            padding: 10px;
+            /* Add padding to table cells */
+            border: 1px solid #0a0909;
+            /* Add borders to table cells */
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-bottom: 10px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #40a4a9;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/logout" method="post" class="logout-container">
+        <button type="submit">Logout</button>
+    </form>
+    <h1>Welcome to my Cart!</h1>
+    <h1>Products List</h1>
+    <table width="80%">
+        <tr>
+            <th width="50%">Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        <% let totalCost=0; %>
+            <% if (seller_product && seller_product.length> 0) { %>
+                <% seller_product.forEach(product=> { %>
+                    <tr>
+                        <td><%- product.name %></td>
+                        <td><%- product.description %></td>
+                        <td>$<%- product.price.toFixed(2) %></td>
+                        <td>
+                            <a class="button"
+                                href="/remove_product_cart/<%= buyer_id %>/<%= product.product_id %>">Remove</a>
+                        </td>
+                    </tr>
+                    <% totalCost +=parseFloat(product.price); %>
+                        <% }); %>
+                            <tr>
+                                <td colspan="2"><strong>Total Cost:</strong></td>
+                                <td><strong>$<%= totalCost.toFixed(2) %></strong></td>
+                                <td>
+                                    <a class="button" href="/order-cart-products/<%= buyer_id %>">Order All Products</a>
+                                </td>
+                            </tr>
+                            <% }else{ %>
+                                <tr>
+                                    <td colspan="4"><strong>No products found!</strong></td>
+                                </tr>
+                                <% } %>
+    </table><br>
+    <a class="button" href="/buyer_dashboard/<%= buyer_id %>">Back To Dashboard</a><br>
+</body>
+
+</html>

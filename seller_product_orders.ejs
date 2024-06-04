@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://d6xcmfyh68wv8.cloudfront.net/learn-content/uploads/2020/11/ecommerce-website-builder-india.png');
+            /* Add your background image URL here */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            /* Add relative positioning */
+        }
+
+        form {
+            position: absolute;
+            /* Set position to absolute */
+            top: 20px;
+            /* Adjust top position */
+            left: 20px;
+            /* Adjust left position */
+        }
+
+        form button {
+            background-color: #59d9cf;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #45b6b0;
+        }
+
+        table {
+            width: 120%;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-collapse: collapse;
+            border-radius: 10px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        button {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            background-color: #59d9cf;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45b6b0;
+        }
+
+        a {
+            color: #333;
+            /* Set link color */
+            text-decoration: none;
+            /* Remove default underline */
+            padding: 5px 10px;
+            /* Add padding */
+            border-radius: 5px;
+            /* Add border radius */
+            background-color: #59d9cf;
+            /* Add background color */
+            margin-right: 5px;
+            /* Add margin for spacing */
+            margin-bottom: 5px;
+            /* Add margin bottom for spacing */
+            display: inline-block;
+            /* Make the anchor elements inline-block */
+        }
+
+        a:hover {
+            background-color: #45b6b0;
+            /* Change background color on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/logout" method="post">
+        <button type="submit">Logout</button>
+    </form>
+    <div style="text-align: center;">
+        <h1>Order List</h1>
+        <table border="1" width="100%">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Buyer Id</th>
+            </tr>
+
+            <% if (seller_product && seller_product.length> 0) { %>
+                <% seller_product.forEach(product=> { %>
+                    <tr>
+                        <td><%- product.name %></td>
+                        <td><%- product.description %></td>
+                        <td>$<%- product.price.toFixed(2) %></td>
+                        <td></td>
+                    </tr>
+                    <% }); %>
+
+                        <% } else { %>
+                            <tr>
+                                <td colspan="5">
+                                    <h1>Products data not found!</h1>
+                                </td>
+                            </tr>
+                            <% } %>
+        </table><br>
+        <button><a href="/seller_dashboard/<%= seller_product[0].seller_id %>">Back To Dashboard</a></button>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Signup</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff; /* Set background color to white */
+            overflow: hidden; /* Hide horizontal scroll bar */
+        }
+        
+        .image-container {
+            background-image: url('https://www.vocso.com/blog/wp-content/uploads/2022/02/eCommerce-Website-Features-1920-x-1080.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            width: 100%; /* Image takes up 100% of the width */
+        }
+        
+        .content-container {
+            background-color: #e5dada; /* White background for content */
+            height: 100vh;
+            width: 40%; /* Content takes up 40% of the width */
+            position: fixed; /* Fixed positioning */
+            top: 0;
+            right: 0;
+            bottom: 0;
+            overflow-y: auto; /* Enable vertical scroll if needed */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .content {
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+        }
+        
+        button {
+            background-color: #59d9cf;
+            border: none;
+            color: rgb(220, 109, 109);
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none; /* Remove default underline */
+        
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        button:hover {
+            background-color: #b4e825;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="image-container"></div>
+    <div class="content-container">
+        <div class="content">
+            <h1>Welcome to our E-commerce Site Wallmart</h1>
+            <button><a href="/login" style="text-decoration:none;">Login</a></button>
+            <button><a href="/signup" style="text-decoration:none;">Signup</a></button>
+        </div>
+    </div>
+</body>
+</html>

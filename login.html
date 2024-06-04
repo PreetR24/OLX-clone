@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .left-half {
+            background-image: url('https://www.vocso.com/blog/wp-content/uploads/2022/02/eCommerce-Website-Features-1920-x-1080.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            width: 150%;
+            /* Image takes up 100% of the width */
+            /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://www.vocso.com/blog/wp-content/uploads/2022/02/eCommerce-Website-Features-1920-x-1080.jpg'); */
+        }
+
+        .right-half {
+            width: 50%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            background-color: rgba(83, 94, 193, 0.8);
+            /* Add transparency to the form background */
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left-half"></div>
+    <div class="right-half">
+        <form method="post" action="/login">
+            <h1>Login</h1>
+            <label for="email">Email :</label>
+            <input type="email" name="email" placeholder="Email" required><br><br>
+            <label for="password">Password :</label>
+            <input type="password" name="password" placeholder="Password" required><br><br>
+            <label for="userType">User Type:</label>
+            <select name="userType" id="userType" required><br>
+                <option value="buyer">Buyer</option>
+                <option value="seller">Seller</option>
+            </select><br><br>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+
+</html>

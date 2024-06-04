@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer</title>
+    <style>
+        body {
+            background-image: url('https://cdn.vox-cdn.com/thumbor/3SMk2n_YKC5WO8eHJhnSR7N7cuY=/0x0:1320x743/1400x1400/filters:focal(660x372:661x373)/cdn.vox-cdn.com/uploads/chorus_asset/file/23761284/dashcart.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            color: #010101;
+            /* Set darker text color */
+            opacity: 0.9;
+            /* Reduce opacity of the background image */
+        }
+
+        form {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            /* Enclose the table in a white box with some opacity */
+            padding: 20px;
+            /* Add padding to the container */
+            border-radius: 10px;
+            /* Add border radius to the container */
+            margin: 20px auto;
+            /* Center the container */
+            max-width: 800px;
+            /* Set maximum width for the container */
+        }
+
+        table {
+            margin: auto;
+            width: 100%;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #222;
+            /* Set border color */
+            border-collapse: collapse;
+            padding: 10px;
+        }
+
+        th {
+            width: 50%;
+        }
+
+        a {
+            text-decoration: none;
+            color: #222;
+            /* Set text color */
+            transition: color 0.3s ease;
+            /* Add smooth transition for color change */
+        }
+
+        a:hover {
+            color: rgb(38, 91, 153);
+        }
+
+        button,
+        .remove-button {
+            display: inline-block;
+            margin: 5px;
+            /* Adjust margin */
+            padding: 10px 20px;
+            background-color: rgb(216, 36, 32);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover,
+        .remove-button:hover {
+            background-color: rgb(36, 143, 121);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>My Orders</h1>
+        <h1>Products List</h1>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+            <% if (seller_product && seller_product.length> 0) { %>
+                <% seller_product.forEach(product=> { %>
+                    <tr>
+                        <td><%- product.name %></td>
+                        <td><%- product.description %></td>
+                        <td>$<%- product.price.toFixed(2) %></td>
+                        <td>
+                            <a href="/remove_order_product/<%= buyer_id %>/<%= product.product_id %>">Remove</a>
+                        </td>
+                    </tr>
+                    <% }); %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="4">No products found!</td>
+                            </tr>
+                            <% } %>
+        </table>
+        <button><a href="/buyer_dashboard/<%= buyer_id %>" style="color: #fff; text-decoration: none;">Back To
+                Dashboard</a></button>
+        <form action="/logout" method="post">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+
+    <script>
+        function removeProduct(buyerId, productId) {
+            // Implement your logic to remove the product here
+            console.log('Removing product:', buyerId, productId);
+        }
+    </script>
+</body>
+
+</html>

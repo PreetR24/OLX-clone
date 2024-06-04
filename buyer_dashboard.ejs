@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer</title>
+    <style>
+        body {
+            background-image: url('https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/newscms/2021_07/3451045/210218-product-of-the-year-2x1-cs.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+        
+        td {
+            text-align: center;
+            padding: 10px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content:space-around;
+            align-items: center;
+            margin: 5px;
+        }
+        
+        .form-container button,
+        .button-container button,
+        .button-container a,
+        .form-container a.button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .form-container button:hover,
+        .form-container a.button:hover {
+            background-color: #0056b3;
+        }
+
+        .logout-container button{
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/logout" method="post" class="logout-container">
+        <button type="submit">Logout</button>
+    </form>
+    <div class="container">
+        <h1>Welcome to WallMart !</h1>
+        <h2>Products List</h2>
+        <h3>Welcome Buyer</h3>
+        <div class="button-container">
+            <form action="/buyer_dashboard/view_my_cart/<%= buyer_id %>" method="get">
+                <button>View My Cart</button>
+                <a href="/buyer_dashboard/my_orders/<%= buyer_id %>" class="button">My Orders</a>
+            </form>
+        </div>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th width="50%">Description</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+            <% if (seller_product && seller_product.length> 0) { %>
+                <% seller_product.forEach(product=> { %>
+                    <tr>
+                        <td><%- product.name %></td>
+                        <td><%- product.description %></td>
+                        <td>$<%- product.price.toFixed(2) %></td>
+                        <td>
+                            <div class="form-container">
+                                <form action="/buyer_dashboard/add_to_cart/<%= buyer_id %>/<%= product.product_id %>"
+                                    method="get">
+                                    <button>Add to Cart</button>
+                                </form>
+                                <form action="/buy_now/<%= buyer_id %>/<%= product.product_id %>" method="get">
+                                    <button>Buy Now</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    <% }); %>
+                        <% }else{ %>
+                            <tr>
+                                <td colspan="4">
+                                    <h1>No products available</h1>
+                                </td>
+                            </tr>
+                            <% } %>
+        </table>
+    </div>
+</body>
+
+</html>
